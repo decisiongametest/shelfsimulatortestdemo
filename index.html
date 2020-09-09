@@ -1,0 +1,200 @@
+<style>
+
+.button_blue{
+	background-color: transparent;
+	font-size:2vw;
+	display: inline-block;
+	border-radius: 5px;
+	text-align: center;
+	opacity: 0;
+	margin: 2vw;
+	margin-left: 4.25vw;
+	margin-right:0vw;
+	margin-top:2.6vw;
+	border: 0.35vw solid transparent;
+
+}
+
+
+.pills{
+	width: 5vw;
+}
+
+
+
+
+</style>
+
+<html>
+<body style="margin:0; padding:0" onload="loader()">
+	
+	<div id="page2" style="display:none; opacity: 0; width: 100%; text-align: center; " >
+		<div id="title2" style="opacity: 1; text-align:center; margin-left: 30vw; width:40vw;background-color: rgba(8, 76, 165,0.25); border-radius: 5px;  font-size: 2vw; padding:1vw; margin-top:10vw;">
+		</div>
+	
+		<div onclick="retry()" onmouseover="retry_over()" onmouseout="retry_out()" id="retry" style="width:10vw; margin-left:45vw; padding:1vw; background-color:rgba(39, 155, 64,0.25);border-radius: 5px; font-size: 2vw; padding: 1vw; margin-top:2vw; border: .35vw solid transparent">Retry</div>
+	</div>
+
+	<div id="page1">
+			<div id="title" style="opacity: 0; text-align:center; width:100vw;color: black; margin-top:1vw; font-size: 2vw; margin-bottom:3vw;">
+			<h1>Pharmacy Simulation</h1>
+			<p style="color:black; margin-top:-2.5vw; font-size: 1.5vw">Hover your cursor over bottles to get a description.</p>
+			</div>
+
+
+		<div style="margin-left:7.5vw; margin-top:0vw;">
+
+			<div id="paragraph2" style="opacity:0; position: absolute; margin-left: 43vw; border-radius: 5px; border: solid 5px rgb(39, 155, 64); width:40vw; height:33.5vw; background-color:rgba(39, 155, 64,0.25); display: inline-block; vertical-align: top">
+				<h1 id="para_title" style="margin:1vw; font-size:1.5vw;">Test</h1>
+					<p id="paragraph" style="margin:1vw; font-size:1.5vw;">this is a test text paragaraph I am not writing about anything in  particular just for the sake of testing this paragraph because I need workds</p>
+			</div>
+
+			<div id="mainquestion" style="opacity:0; position: absolute; margin-left: 43vw; border-radius: 5px; border: solid 5px rgba(8, 76, 165); width:40vw; height:33.5vw; background-color:rgba(8, 76, 165,0.25); display: inline-block; vertical-align: top">
+				<h1  style="margin:1vw; font-size:1.5vw;">Question</h1>
+					<p id="paragraph" style="margin:1vw; font-size:1.5vw;">This is a question, the correct answer is the middle bottle on the second row.</p>
+			</div>
+
+
+		<div style= "display: inline-block;">
+				<img style="position:absolute; width: 35vw; background-color: rgba(0,39,76,0.25);; z-index: -10;" src="shelf.png">
+			<div onmouseover="hover2(1)" onmouseout="hover3(1)" onclick="go_to(1)" id="button1" class="button_blue"><img class="pills" src="blue.png"></div><div onmouseover="hover2(2)" onmouseout="hover3(2)" onclick="go_to(2)" id="button2" class="button_blue"><img class="pills" src="purple.png"></div><div onmouseover="hover2(3)" onmouseout="hover3(3)" onclick="go_to(3)" id="button3" class="button_blue"><img class="pills" src="red.png"></div>
+			<div style="height: 0vw; margin-top:-2.2vw;"><div>
+			<div onmouseover="hover2(4)" onmouseout="hover3(4)" onclick="go_to(4)" id="button4" class="button_blue"><img class="pills" src="red.png"></div><div onmouseover="hover2(5)" onmouseout="hover3(5)" onclick="go_to(5)" id="button5" class="button_blue"><img class="pills" src="blue.png"></div><div onmouseover="hover2(6)" onmouseout="hover3(6)" onclick="go_to(6)" id="button6" class="button_blue"><img class="pills" src="purple.png"></div>
+			<div style="height: 0vw; margin-top:-1.9vw;"><div>
+			<div onmouseover="hover2(7)" onmouseout="hover3(7)" onclick="go_to(7)" id="button7" class="button_blue"><img class="pills" src="purple.png"></div><div onmouseover="hover2(8)" onmouseout="hover3(8)" onclick="go_to(8)" id="button8" class="button_blue"><img class="pills" src="red.png"></div><div onmouseover="hover2(9)" onmouseout="hover3(9)" onclick="go_to(9)" id="button9" class="button_blue"><img class="pills" src="blue.png"></div>
+			<div style="height: 0vw; margin-top:-1.4vw;"><div>
+			<div onmouseover="hover2(10)" onmouseout="hover3(10)" onclick="go_to(10)" id="button10" class="button_blue"><img class="pills" src="purple.png"></div><div onmouseover="hover2(11)" onmouseout="hover3(11)" onclick="go_to(11)" id="button11" class="button_blue"><img class="pills" src="red.png"></div><div onmouseover="hover2(12)" onmouseout="hover3(12)" onclick="go_to(12)" id="button12" class="button_blue"><img class="pills" src="blue.png"></div>
+		</div>
+
+
+		</div>
+
+</div>
+
+</body>
+</html>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+<script>
+
+var answer = [0,0,0,0,1,0,0,0,0,0]
+
+var correct_explanation = "Congratulations! That was the correct answer, press the button below to retry."
+var incorrect_explanation = "Sorry, that was not the correct answer, press button below to retry."
+var loaded = false
+
+	function loader(){
+		jQuery('#title').delay(0).fadeTo(1000,1)
+		jQuery('#mainquestion').fadeTo(1000,1)
+		jQuery('#button1').delay(100).fadeTo(1000,1)
+		jQuery('#button2').delay(200).fadeTo(1000,1)
+		jQuery('#button3').delay(300).fadeTo(1000,1)
+		jQuery('#button4').delay(400).fadeTo(1000,1)
+		jQuery('#button5').delay(500).fadeTo(1000,1)
+		jQuery('#button6').delay(600).fadeTo(1000,1)
+		jQuery('#button7').delay(700).fadeTo(1000,1)
+		jQuery('#button8').delay(800).fadeTo(1000,1)
+		jQuery('#button9').delay(900).fadeTo(1000,1)
+		jQuery('#button10').delay(1000).fadeTo(1000,1)
+		jQuery('#button11').delay(1100).fadeTo(1000,1)
+		jQuery('#button12').delay(1200).fadeTo(1000,1, function(){
+				loaded = true
+		})
+
+	}
+
+	var id_list = ["button1","button2","button3","button4","button5","button6","button7","button8","button9", "button10", "button11", "button12"]
+	var para_titles = ["Drug #1","Drug #2","Drug #3","Drug #4","Drug #5","Drug #6","Drug #7","Drug #8","Drug #9","Drug #10","Drug #11","Drug #12" ]
+	var text_list= ['This is a medical description of drug #1. This is a medical description of drug #1. This is a medical description of drug #1. This is a medical description of drug #1. This is a medical description of drug #1."',
+	'This is a medical description of drug #2. This is a medical description of drug #2. This is a medical description of drug #2. This is a medical description of drug #2. This is a medical description of drug #2."',									
+	'This is a medical description of drug #3. This is a medical description of drug #3. This is a medical description of drug #3. This is a medical description of drug #3. This is a medical description of drug #3."',									
+	'This is a medical description of drug #4. This is a medical description of drug #4. This is a medical description of drug #4. This is a medical description of drug #4. This is a medical description of drug #4."',									
+	'This is a medical description of drug #5. This is a medical description of drug #5. This is a medical description of drug #5. This is a medical description of drug #5. This is a medical description of drug #5."',									
+	'This is a medical description of drug #6. This is a medical description of drug #6. This is a medical description of drug #6. This is a medical description of drug #6. This is a medical description of drug #6."',
+	'This is a medical description of drug #7. This is a medical description of drug #7. This is a medical description of drug #7. This is a medical description of drug #7. This is a medical description of drug #7."',
+	'This is a medical description of drug #8. This is a medical description of drug #8. This is a medical description of drug #8. This is a medical description of drug #8. This is a medical description of drug #8."',
+	'This is a medical description of drug #9. This is a medical description of drug #9. This is a medical description of drug #9. This is a medical description of drug #9. This is a medical description of drug #9."',
+	'This is a medical description of drug #10. This is a medical description of drug #10. This is a medical description of drug #10. This is a medical description of drug #10. This is a medical description of drug #10."',
+	'This is a medical description of drug #11. This is a medical description of drug #11. This is a medical description of drug #11. This is a medical description of drug #11. This is a medical description of drug #11."',
+	'This is a medical description of drug #12. This is a medical description of drug #12. This is a medical description of drug #12. This is a medical description of drug #12. This is a medical description of drug #12."']
+	
+	
+	var pic_list = ["pic1.png","pic2.png","pic3.png","pic4.png","pic5.png","pic6.png","pic7.png","pic8.png","pic9.png","pic10.png",]
+var loaded2 = true
+var hover_time = 0
+var hovering = false
+var temp_timeout = 0
+function show_tab(var1){
+	if(hover_time == var1 && hovering_clear == true){
+		hovering = true
+		document.getElementById('para_title').innerHTML = para_titles[var1-1]
+		document.getElementById("paragraph").innerHTML = text_list[var1-1]
+		jQuery('#paragraph2').fadeTo(500,1)
+		jQuery('#mainquestion').fadeTo(500,0)
+	}
+}
+
+	function hover2(var1){
+		if(loaded == true){
+		document.getElementById(id_list[var1-1]).style.borderColor = "black"
+		temp_timeout = setTimeout( function(){
+									show_tab(var1)},500)
+		hover_time = var1
+		}
+	}
+
+var fade_out = true
+	function hover3(var1){
+		if(loaded == true){
+		document.getElementById(id_list[var1-1]).style.borderColor = "transparent"
+		hover_time = 0
+		if(hovering == true){
+			jQuery('#mainquestion').fadeTo(500,1)
+		jQuery('#paragraph2').fadeTo(500,0)
+		hovering = false
+		}
+		else{
+			clearTimeout(temp_timeout)
+		}
+		}
+	}
+
+
+function retry(){
+	jQuery("#page2").fadeTo(1000,0, function (){
+		document.location.href = "index.html"
+
+	})
+}
+
+function retry_over(){
+	document.getElementById('retry').style.borderColor = "black"
+}
+
+function retry_out(){
+	document.getElementById('retry').style.borderColor = "transparent"
+}
+
+var hovering_clear = true
+function go_to(var1){
+	if(loaded == true){
+		clearTimeout(temp_timeout)
+		hovering_clear = false
+	document.getElementById('paragraph2').style.display = "none"
+	jQuery('#page1').fadeTo(1000,0,function(){
+		jQuery('#page1').hide()
+		document.getElementById('page2').style.display = "inline-block"
+		document.getElementById('page2').style.textAlign="center"
+		if(answer[var1-1] == 1){
+			document.getElementById('title2').innerHTML = correct_explanation
+		}
+		else{
+			document.getElementById('title2').innerHTML = incorrect_explanation
+		}
+		jQuery('#page2').fadeTo(1000,1, function(){
+			loaded2 = true
+		})
+	})
+	}
+}
+</script>
